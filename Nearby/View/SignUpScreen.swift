@@ -62,13 +62,9 @@ class SignUpScreenViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
         
-//        NSLayoutConstraint.activate([
-//            logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 160),
-//            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-//        ])
-//
+
         NSLayoutConstraint.activate([
-//            stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 130),
+
             stackView.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 80),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),

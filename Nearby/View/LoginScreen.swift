@@ -11,11 +11,9 @@ class LoginScreenViewController: UIViewController {
     
     var logoImageView = UIImageView(image: #imageLiteral(resourceName: "Logo"))
     
-    
     var loginGoogleButton = UIButton(title: "Google", titleColor: UIColor.blackColor(), backgroundColor: UIColor.whiteColor(), font: UIFont.avenir20()!, shadow: true)
     var loginButton = UIButton(title: "Login", titleColor: UIColor.whiteColor(), backgroundColor: UIColor.blackColor(), font: UIFont.avenir20()!, shadow: true)
     var signUpButton = UIButton()
-    
     var welcomeBackLabel = UILabel(text: "Welcome Back")
     var loginGoogleLabel = UILabel(text: "Login with")
     var orLabel = UILabel(text: "or")
@@ -25,7 +23,7 @@ class LoginScreenViewController: UIViewController {
     
     let emailTextField = OneLineTextField(text: "")
     let passwordTextField = OneLineTextField(text: "")
-    
+    var customActivityIndicator = SecondCustomActivityIndicator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,14 +32,23 @@ class LoginScreenViewController: UIViewController {
         signUpButton.setTitle("Sign up", for: .normal)
         signUpButton.setTitleColor(UIColor.red, for: .normal)
         setUpConstraints()
-        
-        
+        loginButton.addTarget(self, action: #selector(startAnimations), for: .touchUpInside)
     }
+    
+    @objc func startAnimations() {
+        customActivityIndicator.show(indicator: self.view)
+    }
+}
+
+
+
+
+
+
+extension LoginScreenViewController {
     
     func setUpConstraints() {
         let loginVeiw = ButtonLabelView(button: loginGoogleButton, label: loginGoogleLabel)
-        
-        
         
         let firstStackView = UIStackView(arrangedSubviews: [emailLabel, emailTextField])
         firstStackView.axis = .vertical
@@ -62,27 +69,19 @@ class LoginScreenViewController: UIViewController {
         welcomeBackLabel.font = UIFont.avenir26()
         orLabel.font = UIFont.avenir20()
         needAnAccLabel.font = UIFont.avenir20()
-        self.view.addSubview(stackView)
-        self.view.addSubview(welcomeBackLabel)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        welcomeBackLabel.translatesAutoresizingMaskIntoConstraints = false
-        loginVeiw.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(loginVeiw)
-        loginButton.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(loginButton)
-        needAnAccLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(needAnAccLabel)
-        signUpButton.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(signUpButton)
-        orLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(orLabel)
-//        loginGoogleButton.setImage(UIImage(named: "googleLogo"), for: .normal)
+        
+        addSubviewTo(view: stackView)
+        addSubviewTo(view: welcomeBackLabel)
+        addSubviewTo(view: loginButton)
+        addSubviewTo(view: needAnAccLabel)
+        addSubviewTo(view: signUpButton)
+        addSubviewTo(view: orLabel)
+        
         loginGoogleButton.addRightIcon(image: UIImage(named: "googleLogo")!)
-//        var filled = UIButton.Configuration.filled()
-//        filled.image = UIImage(named: "googleLogo")
-//        filled.imagePlacement = .leading
-//        filled.imagePadding = 5
-//        loginGoogleButton.configuration = filled
+        
+        
+        self.view.addSubview(customActivityIndicator)
+        customActivityIndicator.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
         
         
         NSLayoutConstraint.activate([
@@ -125,8 +124,12 @@ class LoginScreenViewController: UIViewController {
             orLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 40)
         ])
     }
+    
+    func addSubviewTo(view: UIView) {
+        self.view.addSubview(view)
+        view.translatesAutoresizingMaskIntoConstraints = false
+    }
 }
-
 
 
 import SwiftUI

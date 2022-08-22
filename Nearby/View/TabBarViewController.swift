@@ -20,7 +20,7 @@ class TabBarController: UITabBarController {
         
         viewControllers = [
             generateNavigationController(controller: LoginScreenViewController(), image: UIImage(systemName: "person.2", withConfiguration: boldConfiguration) ?? UIImage(), title: "First"),
-            generateNavigationController(controller: ListViewController(), image: UIImage(systemName: "person.2", withConfiguration: boldConfiguration) ?? UIImage(), title: "Second"),
+            generateNavigationController(controller: ChatViewController(), image: UIImage(systemName: "person.2", withConfiguration: boldConfiguration) ?? UIImage(), title: "Second"),
             generateNavigationController(controller: SignUpScreenViewController(), image: UIImage(systemName: "person.2", withConfiguration: boldConfiguration) ?? UIImage(), title: "Third")
         ]
     }
