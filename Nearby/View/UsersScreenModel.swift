@@ -14,18 +14,17 @@ import UIKit
 // Для подтверждения уникальности здесь используется хэш-функция которая подписана под Hashable
 // Rewrite her чтобы для расчета хэша брался только id
 // This делается для того чтобы NSDiffableDataSource мог выполнять операции удаления и добавления новых item
-struct LearnChatModelItem: Hashable, Decodable, ViewModelType {
+struct UsersItem: Hashable, Decodable, ViewModelType {
     
     var username: String
-    var userImageString: String
-    var lastMessage: String
+    var avatarStringURL: String
     var id: Int
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
     // MARK: Так же генерируется функция которая сравнивает id - поля ID - шников
-    static func == (lhs: LearnChatModelItem, rhs: LearnChatModelItem) -> Bool {
+    static func == (lhs: UsersItem, rhs: UsersItem) -> Bool {
         return lhs.id == rhs.id
     }
 }

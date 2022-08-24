@@ -10,5 +10,6 @@ import UIKit
 
 
 protocol CollectionViewViewModelType {
-    func createCell<T, E>(cell: T.Type, for model: ViewModelType, for indexPath: IndexPath, collectionView: E) -> T where T: CollectionCellViewModelType, E: UICollectionView
+    func createCell<T, E>(cell: T.Type, for model: ActiveItem, for indexPath: IndexPath, collectionView: E) -> T where T : CollectionCellViewModelType, E: UICollectionView
+    
 }

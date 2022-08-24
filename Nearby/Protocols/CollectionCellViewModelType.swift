@@ -7,8 +7,14 @@
 
 import Foundation
 
+protocol TypeModel {
+    static var model: ViewModelType { get set }
+}
 
 protocol CollectionCellViewModelType: ViewModelTypeProtocol {
+    associatedtype TViewModel
+    
     static var reuseId: String { get set }
-    func configure(value: ActiveItem)
+    func configure(value: TViewModel)
 }
+

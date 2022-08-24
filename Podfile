@@ -6,6 +6,8 @@ target 'Nearby' do
   use_frameworks!
 
   # Pods for Nearby
-  pod 'NVActivityIndicatorView'
+
+
+  
 
 end

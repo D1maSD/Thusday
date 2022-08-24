@@ -14,7 +14,7 @@ import UIKit
 // Для подтверждения уникальности здесь используется хэш-функция которая подписана под Hashable
 // Rewrite her чтобы для расчета хэша брался только id
 // This делается для того чтобы NSDiffableDataSource мог выполнять операции удаления и добавления новых item
-struct ActiveItem: Hashable, Decodable, CollectionViewViewModelType {
+struct ActiveItem: Hashable, Decodable, ViewModelType {
     
     var username: String
     var userImageString: String

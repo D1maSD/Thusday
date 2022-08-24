@@ -6,6 +6,7 @@
 class ChatViewController: UIViewController {
     
     var collectionView: UICollectionView!
+    var viewModel: ChatScreenViewModel?
     
     // create section for difDataSource
     enum Section: Int, CaseIterable {
@@ -35,14 +36,14 @@ class ChatViewController: UIViewController {
     
     func setUpDiffbleDataSource() {
         
-        diffableDataSource = UICollectionViewDiffableDataSource<Section, ActiveItem>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+        diffableDataSource = UICollectionViewDiffableDataSource<Section, ActiveItem>(collectionView: collectionView, cellProvider: { [self] collectionView, indexPath, itemIdentifier in
             
             guard let section = Section(rawValue: indexPath.section) else { fatalError("Out of section") }
             switch section {
             case .activeChat:
-                return self.createCell(cell: ActiveChatCell.self, for: itemIdentifier, for: indexPath)
+                return viewModel?.createCell(cell: ActiveChatCell.self, for: itemIdentifier, for: indexPath, collectionView: collectionView)
             case .waitingChat:
-                return self.createCell(cell: WaitingChatCell.self, for: itemIdentifier, for: indexPath)
+                return viewModel?.createCell(cell: WaitingChatCell.self, for: itemIdentifier, for: indexPath, collectionView: collectionView)
             }
         })
         //#5 setUp supplementaryViewProvider
@@ -67,16 +68,6 @@ class ChatViewController: UIViewController {
         snapShot.appendItems(waitingChat, toSection: .waitingChat)
         snapShot.appendItems(activeChat, toSection: .activeChat)
         diffableDataSource?.apply(snapShot)
-    }
-    
-    private func createCell<T: CollectionCellViewModelType>(cell: T.Type, for model: ActiveItem, for indexPath: IndexPath) -> T {
-        
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cell.reuseId, for: indexPath) as? T else {
-            
-            return fatalError("not dequeue \(cell) ") as! T
-        }
-        cell.configure(value: model)
-        return cell
     }
     
     
@@ -105,13 +96,13 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout {
     // create a compositional Layout
     // section - group - item - size
     func createCompositionalLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout { [self] sectionIndex, layoutEnvironment in
+        let layout = UICollectionViewCompositionalLayout { [weak self] sectionIndex, layoutEnvironment in
             guard let section = Section(rawValue: sectionIndex) else { fatalError("Section out of range") }
             switch section {
             case .waitingChat:
-                return self.wainitgChatsLayout()
+                return self?.wainitgChatsLayout()
             case .activeChat:
-                return self.activeChatsLayout()
+                return self?.activeChatsLayout()
             }
         }
         return layout
@@ -170,7 +161,7 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - SwiftUI
 import SwiftUI
 
-struct ListVCProvider: PreviewProvider {
+struct ChatVCProvider: PreviewProvider {
     static var previews: some View {
         ContainerView().edgesIgnoringSafeArea(.all)
     }
@@ -179,11 +170,11 @@ struct ListVCProvider: PreviewProvider {
         
         let tabBarVC = ChatViewController()
         
-        func makeUIViewController(context: UIViewControllerRepresentableContext<ListVCProvider.ContainerView>) -> ChatViewController {
+        func makeUIViewController(context: UIViewControllerRepresentableContext<ChatVCProvider.ContainerView>) -> ChatViewController {
             return tabBarVC
         }
         
-        func updateUIViewController(_ uiViewController: ListVCProvider.ContainerView.UIViewControllerType, context: UIViewControllerRepresentableContext<ListVCProvider.ContainerView>) {
+        func updateUIViewController(_ uiViewController: ChatVCProvider.ContainerView.UIViewControllerType, context: UIViewControllerRepresentableContext<ChatVCProvider.ContainerView>) {
             
         }
     }

@@ -13,6 +13,7 @@ import UIKit
 
 class ActiveChatCell: UICollectionViewCell, CollectionCellViewModelType {
     
+    
     var IconImageView = UIImageView()
     var nameLabel = UILabel()
     var messageLabel = UILabel()
