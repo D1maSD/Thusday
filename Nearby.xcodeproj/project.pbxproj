@@ -22,6 +22,7 @@
 		A808F27728B111CA0084D848 /* LearnModelSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A808F27628B111CA0084D848 /* LearnModelSection.swift */; };
 		A8130E862893FEA500B7D5CC /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8130E852893FEA500B7D5CC /* LoginScreen.swift */; };
 		A8130E8828940E1700B7D5CC /* SetUpProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8130E8728940E1600B7D5CC /* SetUpProfileScreen.swift */; };
+		A82212C028B7794700D8AE19 /* UsersChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82212BF28B7794700D8AE19 /* UsersChatCell.swift */; };
 		A841106D28A3CCDD00772940 /* activeChats.json in Resources */ = {isa = PBXBuildFile; fileRef = A841106C28A3CCDD00772940 /* activeChats.json */; };
 		A841106F28A3CCE500772940 /* waitingChats.json in Resources */ = {isa = PBXBuildFile; fileRef = A841106E28A3CCE500772940 /* waitingChats.json */; };
 		A841107128A3CE2100772940 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A841107028A3CE2100772940 /* Bundle+Extensions.swift */; };
@@ -69,6 +70,7 @@
 		A808F27628B111CA0084D848 /* LearnModelSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnModelSection.swift; sourceTree = "<group>"; };
 		A8130E852893FEA500B7D5CC /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
 		A8130E8728940E1600B7D5CC /* SetUpProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpProfileScreen.swift; sourceTree = "<group>"; };
+		A82212BF28B7794700D8AE19 /* UsersChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersChatCell.swift; sourceTree = "<group>"; };
 		A841106C28A3CCDD00772940 /* activeChats.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = activeChats.json; sourceTree = "<group>"; };
 		A841106E28A3CCE500772940 /* waitingChats.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = waitingChats.json; sourceTree = "<group>"; };
 		A841107028A3CE2100772940 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 		A8BC043428B3918300F0D8F6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A82212BF28B7794700D8AE19 /* UsersChatCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -521,6 +524,7 @@
 				A808F25B28AD22FC0084D848 /* CollectionViewCellViewModel.swift in Sources */,
 				A808F26E28AE3CFC0084D848 /* ViewController.swift in Sources */,
 				A808F27228B103C40084D848 /* #1) CustomTableView.swift in Sources */,
+				A82212C028B7794700D8AE19 /* UsersChatCell.swift in Sources */,
 				A8AD6E6B28A920F100550D65 /* ActiveChatCell.swift in Sources */,
 				A808F26B28AE356A0084D848 /* ViewModelTypeProtocol.swift in Sources */,
 				A808F25928AD21660084D848 /* CollectionViewViewModel.swift in Sources */,

@@ -86,7 +86,6 @@ class ChatViewController: UIViewController {
             SectionHeader.self, forSupplementaryViewOfKind:
                 UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: SectionHeader.reuseId)
-        
     }
 }
 

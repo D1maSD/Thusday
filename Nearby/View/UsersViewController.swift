@@ -14,12 +14,13 @@ class UsersViewController: ViewController {
     var diffableDataSource: UICollectionViewDiffableDataSource<UsersSection, UsersItem>?
     var collectionView: UICollectionView!
     var viewModel: UsersViewModel?
-    
+//    var viewModel: ChatScreenViewModel?
+
     enum UsersSection: Int, CaseIterable {
         case active
     }
     
-    var users = Bundle.main.decode(UsersItem.self, from: "users.json")
+    var users = Bundle.main.decode([UsersItem].self, from: "users.json")
     
     private func setupNavigationBar() {
         navigationController?.navigationBar.barTintColor = .systemGray
@@ -36,19 +37,21 @@ class UsersViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        setUpCollectionView()
         setupNavigationBar()
         setUpDiffableDataSource()
         reloadData()
-        setUpCollectionView()
+        
     }
     
     func setUpDiffableDataSource() {
-        diffableDataSource = UICollectionViewDiffableDataSource<UsersSection, UsersItem>(collectionView: collectionView, cellProvider: { collectionView, indexPath, item in
+        diffableDataSource = UICollectionViewDiffableDataSource<UsersSection, UsersItem>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, item) -> UICollectionViewCell? in
 
-            guard let section = UsersSection(rawValue: indexPath.row) else { fatalError("Section index out of range") }
+            guard let section = UsersSection(rawValue: indexPath.section) else { fatalError("Section index out of range") }
             switch section {
             case .active:
+//                return self.viewModel?.createCell(cell: WaitingChatCell.self, for: item, for: indexPath, collectionView: collectionView)
+                
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "usersCell", for: indexPath)
                 cell.backgroundColor = .systemBlue
                 return cell
@@ -59,7 +62,7 @@ class UsersViewController: ViewController {
     private func reloadData() {
         var snapShot = NSDiffableDataSourceSnapshot<UsersSection, UsersItem>()
         snapShot.appendSections([.active])
-        snapShot.appendItems([users], toSection: .active)
+        snapShot.appendItems(users, toSection: .active)
         diffableDataSource?.apply(snapShot)
     }
 }
@@ -68,8 +71,9 @@ class UsersViewController: ViewController {
 extension UsersViewController {
     
     private func setUpCollectionView() {
-        collectionView.backgroundColor = .systemPink
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: setUpCompositionalLayout())
+        collectionView.backgroundColor = .systemPink
+//        collectionView.register(WaitingChatCell.self, forCellWithReuseIdentifier: WaitingChatCell.reuseId)
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "usersCell")
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.view.addSubview(collectionView)
@@ -94,13 +98,15 @@ extension UsersViewController {
     private func usersSectionsLayout() -> NSCollectionLayoutSection {
         
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-        
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(0.5))
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 7.5, bottom: 0, trailing: 7.5)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(0.6))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
-        
+        let spacing = CGFloat(15)
         let section = NSCollectionLayoutSection(group: group)
+        group.interItemSpacing = .fixed(spacing)
+        section.interGroupSpacing = spacing
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15)
 
         return section
     }
