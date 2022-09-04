@@ -1,0 +1,10 @@
+/* 
+  Localize.strings
+  Treelllo
+
+  Created by Misha Fedorov on 11.02.2022.
+  
+*/
+
+
+"ViewController.title" = "Hello";

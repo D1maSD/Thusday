@@ -34,6 +34,19 @@ class ChatViewController: UIViewController {
         createSnapShot()
     }
     
+    
+    private func configure<T: ActiveChatCell>(cellType: T.Type, with value: ActiveItem, for indexPath: IndexPath) -> T {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellType.reuseId, for: indexPath) as? T else { fatalError("Unable to dequeue \(cellType)") }
+        cell.configure(value: value)
+        return cell
+    }
+    
+    private func configureTwo<T: WaitingChatCell>(cellType: T.Type, with value: ActiveItem, for indexPath: IndexPath) -> T {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellType.reuseId, for: indexPath) as? T else { fatalError("Unable to dequeue \(cellType)") }
+        cell.configure(value: value)
+        return cell
+    }
+    
     func setUpDiffbleDataSource() {
         
         diffableDataSource = UICollectionViewDiffableDataSource<Section, ActiveItem>(collectionView: collectionView, cellProvider: { [self] collectionView, indexPath, itemIdentifier in
@@ -41,9 +54,10 @@ class ChatViewController: UIViewController {
             guard let section = Section(rawValue: indexPath.section) else { fatalError("Out of section") }
             switch section {
             case .activeChat:
-                return viewModel?.createCell(cell: ActiveChatCell.self, for: itemIdentifier, for: indexPath, collectionView: collectionView)
+//                return viewModel?.createCell(cell: ActiveChatCell.self, for: itemIdentifier, for: indexPath, collectionView: collectionView)
+               return self.configure(cellType: ActiveChatCell.self, with: itemIdentifier, for: indexPath)
             case .waitingChat:
-                return viewModel?.createCell(cell: WaitingChatCell.self, for: itemIdentifier, for: indexPath, collectionView: collectionView)
+                return self.configureTwo(cellType: WaitingChatCell.self, with: itemIdentifier, for: indexPath)
             }
         })
         //#5 setUp supplementaryViewProvider
@@ -51,7 +65,7 @@ class ChatViewController: UIViewController {
         diffableDataSource?.supplementaryViewProvider = { collectionView, elementKind, indexPath in
             
             guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: SectionHeader.reuseId, for: indexPath) as? SectionHeader else {  fatalError("Not mach elementKind") }
-            guard let section = Section(rawValue: indexPath.row) else { fatalError("No mach section") }
+            guard let section = Section(rawValue: indexPath.section) else { fatalError("No mach section") }
             sectionHeader.configure(title: Section.createHeader(section)(), textColor: UIColor.systemGray, font: UIFont.avenir26()!)
             return sectionHeader
         }
@@ -82,6 +96,7 @@ class ChatViewController: UIViewController {
         
         collectionView.register(ActiveChatCell.self, forCellWithReuseIdentifier: ActiveChatCell.reuseId)
         collectionView.register(WaitingChatCell.self, forCellWithReuseIdentifier: WaitingChatCell.reuseId)
+        
         collectionView.register(
             SectionHeader.self, forSupplementaryViewOfKind:
                 UICollectionView.elementKindSectionHeader,

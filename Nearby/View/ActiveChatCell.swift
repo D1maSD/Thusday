@@ -11,7 +11,7 @@ import UIKit
 
 
 
-class ActiveChatCell: UICollectionViewCell, CollectionCellViewModelType {
+class ActiveChatCell: UICollectionViewCell, CollectionCellViewModelType, ViewModelTypeProtocol {
     
     
     var IconImageView = UIImageView()

@@ -1,0 +1,4 @@
+exampleBackground: #c6c115
+grayTextFieldBorder: #C9C9C9
+editedTextFieldBorder: #222222
+defaultBlackLabel: #353535

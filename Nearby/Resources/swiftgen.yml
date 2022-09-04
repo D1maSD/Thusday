@@ -1,0 +1,29 @@
+input_dir: Nearby/Resources/
+output_dir: Nearby/Resources/Generated/
+
+strings:
+  inputs: - Localize/en.lproj/localize.strings
+  outputs:
+    - templateName: structured-swift5
+      output: Generated/Strings.swift
+      
+xcassets:
+  inputs:
+    - Resources/Assets/Assets.xcassets
+  outputs:
+    - templateName: swift5
+      output: Generated/Assets.swift
+
+colors:
+    inputs: Colors/Colors.txt
+    outputs:
+        templateName: swift5
+        output: Generated/Colors.swift
+        
+        fonts:
+  inputs:
+    - Fonts/Nunito
+    - Fonts/Lato
+  outputs:
+    templateName: swift5
+    output: Generated/CustomFonts.swift

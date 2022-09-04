@@ -27,4 +27,11 @@ struct UsersItem: Hashable, Decodable, ViewModelType {
     static func == (lhs: UsersItem, rhs: UsersItem) -> Bool {
         return lhs.id == rhs.id
     }
+    
+    func filteredData(filtered: String?) -> Bool {
+        guard let filtered = filtered else { return false }
+        if filtered.isEmpty { return true }
+        let lowerCased = filtered.lowercased()
+        return username.lowercased().contains(lowerCased)
+    }
 }
