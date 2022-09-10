@@ -100,13 +100,6 @@ extension UsersViewController {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: setUpCompositionalLayout())
         collectionView.backgroundColor = .systemPink
         collectionView.register(UsersChatCell.self, forCellWithReuseIdentifier: UsersChatCell.reuseId)
-        
-//        if flag == true {
-//            collectionView.register(WaitingChatCell.self, forCellWithReuseIdentifier: WaitingChatCell.reuseId)
-//        } else {
-//            collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "usersCell")
-//        }
-
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.view.addSubview(collectionView)
         

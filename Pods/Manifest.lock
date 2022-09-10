@@ -102,6 +102,7 @@ PODS:
   - RxRelay (6.5.0):
     - RxSwift (= 6.5.0)
   - RxSwift (6.5.0)
+  - SnapKit (5.6.0)
   - SwiftGen (6.6.1)
 
 DEPENDENCIES:
@@ -110,6 +111,7 @@ DEPENDENCIES:
   - FirebaseAuth
   - RxCocoa (= 6.5.0)
   - RxSwift (= 6.5.0)
+  - SnapKit
   - SwiftGen
 
 SPEC REPOS:
@@ -130,6 +132,7 @@ SPEC REPOS:
     - RxCocoa
     - RxRelay
     - RxSwift
+    - SnapKit
     - SwiftGen
 
 SPEC CHECKSUMS:
@@ -149,8 +152,9 @@ SPEC CHECKSUMS:
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftGen: 787181d7895fa2f5e7313d05de92c387010149c2
 
-PODFILE CHECKSUM: 167abf54a5beb10e94ef9077366d158fe64a605f
+PODFILE CHECKSUM: 8c9324fa144daf615bf2265290694d3e5515b592
 
 COCOAPODS: 1.11.3

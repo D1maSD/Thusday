@@ -10,6 +10,7 @@ target 'Nearby' do
 pod 'Firebase'
   pod 'FirebaseAnalytics'
   pod 'FirebaseAuth'
+  pod 'SnapKit'
 
   pod 'SwiftGen'
 

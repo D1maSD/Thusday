@@ -25,6 +25,19 @@ class JoinViewController: ViewController {
         view.backgroundColor = .whiteColor()
         setUpConstraints()
     }
+    
+    func buttonsTapped() {
+        loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        emailButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func loginButtonTapped() {
+        print(#function)
+    }
+    
+    @objc func signUpButtonTapped() {
+        print(#function)
+    }
 }
 
 

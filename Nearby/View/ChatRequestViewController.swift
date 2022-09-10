@@ -22,7 +22,6 @@ class ChatRequestViewController: ViewController {
     
     var acceptButton = UIButton(title: "ACCEPT", titleColor: UIColor.whiteColor(), backgroundColor: UIColor.clear, font: UIFont.avenir20()!, shadow: true)
     
-//    var denyButton = UIButton(title: "Deny", titleColor: UIColor.whiteColor(), backgroundColor: .clear, font: UIFont.avenir20()!, shadow: true)
     var denyButton = UIButton()
     
     
@@ -36,8 +35,13 @@ class ChatRequestViewController: ViewController {
         acceptButton.addSubview(customView)
         acceptButton.sendSubviewToBack(customView)
         denyButton.setTitle("Deny", for: .normal)
+    }
+    
+    func buttonAction() {
         
     }
+    
+//    @objc func 
     
     func configure(value: UsersItem) {
         self.containerView.image = UIImage(named: value.avatarStringURL)

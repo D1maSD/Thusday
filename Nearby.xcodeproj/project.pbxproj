@@ -352,6 +352,7 @@
 		A8B20298288C36CC00B074FB /* Nearby */ = {
 			isa = PBXGroup;
 			children = (
+				A8B5DCBA28CC96AB00190716 /* Services */,
 				A8F6F8C9288F018200529D58 /* Launch */,
 				A8F6F8C8288F010400529D58 /* Resources */,
 				A808F25728AD21220084D848 /* Protocols */,
@@ -364,6 +365,13 @@
 				A8F6F8C5288EFFE100529D58 /* Model */,
 			);
 			path = Nearby;
+			sourceTree = "<group>";
+		};
+		A8B5DCBA28CC96AB00190716 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		A8BC043328B3917500F0D8F6 /* UsersScreen */ = {
