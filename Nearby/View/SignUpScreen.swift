@@ -21,14 +21,16 @@ class SignUpScreenViewController: UIViewController {
     let emailTextField = OneLineTextField(text: "")
     let passwordTextField = OneLineTextField(text: "")
     let confirmPasswordTextField = OneLineTextField(text: "")
-
-
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .whiteColor()
         setUpConstraints()
+        buttonsTapped()
+        
     }
     
     func buttonsTapped() {
@@ -37,7 +39,28 @@ class SignUpScreenViewController: UIViewController {
     
     @objc func signUpButtonTapped() {
         print(#function)
+
+        AuthService.shared.signUpUser(email: emailTextField.text, password: passwordTextField.text, confirmPassword: confirmPasswordTextField.text, completion: { result in
+            
+            switch result {
+            case .success(let success):
+                self.showAlert(alertTitle: "Success", actionTitle: "OK", message: "User was registered")
+            case .failure(let error):
+                self.showAlert(alertTitle: "Failure", actionTitle: "OK", message: error.localizedDescription)
+                print(error.localizedDescription)
+            }
+        })
     }
+    
+    
+    func showAlert(alertTitle: String, actionTitle: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: actionTitle, style: .default, handler: nil)
+        alert.addAction(alertAction)
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
     
     func setUpConstraints() {
         
@@ -68,9 +91,9 @@ class SignUpScreenViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
         
-
+        
         NSLayoutConstraint.activate([
-
+            
             stackView.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 80),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
@@ -108,3 +131,5 @@ struct LogInScreenViewControllerProvider: PreviewProvider {
         }
     }
 }
+
+

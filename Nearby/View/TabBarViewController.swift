@@ -24,7 +24,6 @@ class TabBarController: UITabBarController {
             generateNavigationController(controller: SignUpScreenViewController(), image: UIImage(systemName: "person.2", withConfiguration: boldConfiguration) ?? UIImage(), title: "Third"),
             generateNavigationController(controller: JoinViewController(), image: UIImage(systemName: "person.2", withConfiguration: boldConfiguration) ?? UIImage(), title: "Four"),
             generateNavigationController(controller: LoginScreenViewController(), image: UIImage(systemName: "person.2", withConfiguration: boldConfiguration) ?? UIImage(), title: "Five")
-            
         ]
     }
     

@@ -7,6 +7,7 @@ class ChatViewController: UIViewController {
     
     var collectionView: UICollectionView!
     var viewModel: ChatScreenViewModel?
+    var coordinator: MainCoordinator?
     
     // create section for difDataSource
     enum Section: Int, CaseIterable {

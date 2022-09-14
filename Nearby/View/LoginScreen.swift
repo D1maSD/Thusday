@@ -41,6 +41,24 @@ class LoginScreenViewController: UIViewController {
     
     @objc func loginButtonTapped() {
         print(#function)
+        
+        AuthService.shared.loginUser(email: emailTextField.text, password: passwordTextField.text) { result in
+            
+            switch result {
+            case .success(_):
+                self.showAlert(alertTitle: "Success", actionTitle: "OK", message: "You was login")
+            case .failure(_):
+                self.showAlert(alertTitle: "Failure", actionTitle: "OK", message: "Please try again")
+            }
+        }
+    }
+    
+    func showAlert(alertTitle: String, actionTitle: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: actionTitle, style: .default, handler: nil)
+        alert.addAction(alertAction)
+        present(alert, animated: true, completion: nil)
+        
     }
     
     @objc func signUpButtonTapped() {
